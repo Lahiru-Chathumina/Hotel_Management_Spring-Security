@@ -1,0 +1,18 @@
+package org.example.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class RoomDto {
+    private Long roomId;
+    private String roomNumber;
+    private String type;
+    private double price;
+    private boolean available;
+}
