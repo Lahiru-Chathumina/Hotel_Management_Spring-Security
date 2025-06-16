@@ -2,7 +2,6 @@ package org.example.service.serviceimpl;
 
 import lombok.AllArgsConstructor;
 import org.example.dto.BookigDto;
-import org.example.dto.CustomerDto;
 import org.example.entity.BookingEntity;
 import org.example.entity.CustomerEntity;
 import org.example.entity.RoomEntity;
@@ -27,8 +26,9 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void addBooking(BookigDto bookingDto) {
-        Optional<CustomerEntity> allByCustomerId = customerRepostory.findAllById(bookingDto.getCustomer().getCustomerid());
-        Optional<RoomEntity> allByRoomId1 = roomRepostory.findAllById(bookingDto.getRoom().getRoomId());
+        Optional<CustomerEntity> allByCustomerId = customerRepostory.findByCustomerid(
+                bookingDto.getCustomer().getCustomerid());
+        Optional<RoomEntity> allByRoomId1 = roomRepostory.findById(bookingDto.getRoom().getRoomId());
 
         if(allByCustomerId.isEmpty()) {
             throw new RuntimeException("Customer not found");
@@ -38,11 +38,11 @@ public class BookingServiceImpl implements BookingService {
         }
         if(!allByRoomId1.get().isAvailable()){
             throw new RuntimeException("Room is not available");
-        } else {
+        }
             RoomEntity BookingRooms = allByRoomId1.get();
             BookingRooms.setAvailable(false);
             roomRepostory.save(BookingRooms);
-        }
+
 
     }
 

@@ -3,6 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.CustomerDto;
 import org.example.service.CustomerService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,9 @@ public class CustomerController {
     private final CustomerService service;
 
     @PostMapping("/add")
-   public void addCustomer(@RequestBody CustomerDto customerDto){
+    @PreAuthorize("hasRole('CUSTOMER')")
+
+    public void addCustomer(@RequestBody CustomerDto customerDto){
        service.addCustomer(customerDto);
    }
 
@@ -31,12 +34,12 @@ public class CustomerController {
     }
 
     @PutMapping("/update/{id}")
-    public void updateCustomer(@PathVariable("id") Long customerid, @RequestBody CustomerDto customerDto) {
-        service.updateCustomer(customerid, customerDto);
+    public void updateCustomer(@PathVariable("id") Long id, @RequestBody CustomerDto customerDto) {
+        service.updateCustomer(id, customerDto);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteCustomer(@PathVariable("id") Long customerid) {
-        service.deleteCustomer(customerid);
+    public void deleteCustomer(@PathVariable("id") Long id) {
+        service.deleteCustomer(id);
     }
 }
