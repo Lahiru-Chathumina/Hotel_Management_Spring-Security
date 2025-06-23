@@ -39,9 +39,20 @@ public class BookingServiceImpl implements BookingService {
         if(!allByRoomId1.get().isAvailable()){
             throw new RuntimeException("Room is not available");
         }
-            RoomEntity BookingRooms = allByRoomId1.get();
-            BookingRooms.setAvailable(false);
-            roomRepostory.save(BookingRooms);
+
+        RoomEntity room = allByRoomId1.get();
+        if(room.isAvailable()){
+            throw new RuntimeException("Room is not available");
+        }
+        room.setAvailable(false);
+        roomRepostory.save(room);
+
+        BookingEntity booking = new BookingEntity();
+        booking.setBookingDate(bookingDto.getBookingDate());
+        booking.setCustomer(allByCustomerId.get());
+        booking.setRoom(room);
+
+        bookingRepository.save(booking);
 
 
     }
