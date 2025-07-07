@@ -23,7 +23,7 @@ This project is a **Hotel Management System** backend built using **Spring Boot*
 | Security     | Spring Security, JWT     |
 | ORM / DB     | Hibernate, JPA + MySQL   |
 | Build Tool   | Maven or Gradle          |
-| Testing      | JUnit, Mockito           |
+|            |
 
 ---
 
