@@ -22,11 +22,8 @@ This project is a **Hotel Management System** backend built using **Spring Boot*
 | Backend      | Spring Boot (3.x)        |
 | Security     | Spring Security, JWT     |
 | ORM / DB     | Hibernate, JPA + MySQL   |
-| Build Tool   | Maven or Gradle          |
+| Build Tool   | Maven         |
 |            |
 
 ---
-
-## 📂 Project Structure
-
 
