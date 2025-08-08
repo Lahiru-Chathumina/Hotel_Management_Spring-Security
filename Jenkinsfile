@@ -1,11 +1,10 @@
 pipeline {
 	agent any
-//mewa
+
     tools {
 		maven 'Maven-3.8.6'
         jdk 'JDK-23'
     }
-//mewa
 
     stages {
 		stage('Checkout') {
@@ -15,12 +14,12 @@ pipeline {
         }
         stage('Build') {
 			steps {
-				sh 'mvn clean package -DskipTests'
+				bat 'mvn clean package -DskipTests'
             }
         }
         stage('Test') {
 			steps {
-				sh 'mvn test'
+				bat 'mvn test'
             }
         }
         stage('Archive') {
